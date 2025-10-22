@@ -1,0 +1,83 @@
+// PEWARISAN (INHERITANCE)
+// Kelas induk
+class Hewan {
+  constructor(nama, jenis) {
+    this.nama = nama;  // properti dasar hewan
+    this.jenis = jenis; // properti dasar hewan
+  }
+
+  suara() { // method umum untuk semua hewan
+    return `${this.nama} bersuara ....`;
+  }
+}
+
+// PEWARISAN (INHERITANCE)
+// Kelas turunan (subclass) mewarisi dari Hewan
+class Kucing extends Hewan {
+  constructor(nama, warna) {
+    super(nama, "kucing"); // memanggil constructor superclass (pewarisan)
+    this.warna = warna; // properti tambahan khusus kucing
+  }
+}
+
+const milo = new Kucing("Milo", "putih");
+console.log(milo.nama);  // Milo
+console.log(milo.jenis); // kucing (warisan dari superclass)
+console.log(milo.suara()); // Milo bersuara....
+
+// PEWARISAN + POLIMORFISME
+// Kelas turunan yang mewarisi dan juga mengubah (override) method suara()
+class Anjing extends Hewan {
+  constructor(nama, warna) {
+    super(nama, "anjing"); // pewarisan konstruktor dari Hewan
+    this.warna = warna;
+  }
+
+  // POLIMORFISME (Overriding method suara())
+  suara() {
+    return `${this.nama} menggonggong: woof woof!`;
+  }
+}
+
+const doge = new Anjing("Doge", "coklat");
+console.log(doge.suara()); // Doge menggonggong: woof woof!
+
+// PEWARISAN + POLIMORFISME
+// Kelas Serigala juga mewarisi dan memodifikasi method suara()
+class Serigala extends Hewan {
+  constructor(nama, warna) {
+    super(nama, "serigala"); // pewarisan
+    this.warna = warna;
+  }
+
+  // POLIMORFISME (menggunakan super.suara() lalu menambah perilaku)
+  suara() {
+    return super.suara() + " Auuuuuu~";
+  }
+}
+
+const alpha = new Serigala("Alpha", "abu-abu");
+console.log(alpha.suara()); // Alpha bersuara .... Auuuuuu~
+
+// PEWARISAN + POLIMORFISME
+// Kelas Burung juga mewarisi Hewan dan override method suara()
+class Burung extends Hewan {
+  constructor(nama) {
+    super(nama, "burung"); // pewarisan konstruktor dari Hewan
+  }
+
+  // POLIMORFISME
+  suara() {
+    return `${this.nama} berkicau: cip cip!`;
+  }
+}
+
+// POLIMORFISME (semua objek Hewan bertindak berbeda saat suara() dipanggil)
+const hewanList = [
+  new Kucing("Milo", "putih"),
+  new Anjing("Buddy", "hitam"),
+  new Burung("Tweety")
+];
+
+// POLIMORFISME (method suara() menghasilkan hasil berbeda tergantung jenis hewan)
+hewanList.forEach(hewan => console.log(hewan.suara()));
