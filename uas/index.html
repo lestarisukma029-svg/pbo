@@ -1,1 +1,105 @@
-lestari sukma ayu
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Login OOP</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f2f5; }
+        .card { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 300px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .error { color: red; font-size: 0.8rem; margin-bottom: 10px; display: none; }
+        .hidden { display: none; }
+        .success-box { text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div id="login-section" class="card">
+        <h2>Login</h2>
+        <p id="error-msg" class="error">Salah login!</p>
+        <input type="text" id="username" placeholder="Username (admin)">
+        <input type="password" id="password" placeholder="Password (1234)">
+        <button onclick="authApp.handleLogin()">Masuk</button>
+    </div>
+
+    <div id="user-section" class="card hidden">
+        <div class="success-box">
+            <h2>Selamat Datang!</h2>
+            <p>Halo, <strong id="display-name"></strong></p>
+            <p>Ini adalah halaman user khusus Anda.</p>
+            <button onclick="authApp.handleLogout()" style="background: #dc3545;">Keluar</button>
+        </div>
+    </div>
+
+    <script>
+        class AuthApp {
+            constructor() {
+                this.dbName = 'user_data_json';
+                this.initDatabase();
+                this.checkSession();
+            }
+
+            // 1. Inisialisasi Data Awal ke LocalStorage
+            initDatabase() {
+                const existingData = localStorage.getItem(this.dbName);
+                if (!existingData) {
+                    const initialUsers = [
+                        { "username": "admin", "password": "123", "name": "Administrator" },
+                        { "username": "user1", "password": "password123", "name": "Budi Santoso" }
+                    ];
+                    localStorage.setItem(this.dbName, JSON.stringify(initialUsers));
+                }
+            }
+
+            // 2. Logika Login
+            handleLogin() {
+                const userInp = document.getElementById('username').value;
+                const passInp = document.getElementById('password').value;
+                const errorMsg = document.getElementById('error-msg');
+
+                // Ambil data dari localStorage & Parse JSON
+                const users = JSON.parse(localStorage.getItem(this.dbName));
+
+                // Cari user yang cocok
+                const userFound = users.find(u => u.username === userInp && u.password === passInp);
+
+                if (userFound) {
+                    errorMsg.style.display = 'none';
+                    this.showUserPage(userFound.name);
+                    // Simpan session sederhana
+                    localStorage.setItem('session', userFound.name);
+                } else {
+                    errorMsg.style.display = 'block';
+                }
+            }
+
+            // 3. Tampilan Halaman User
+            showUserPage(name) {
+                document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('user-section').classList.remove('hidden');
+                document.getElementById('display-name').innerText = name;
+            }
+
+            // 4. Logika Logout
+            handleLogout() {
+                localStorage.removeItem('session');
+                location.reload(); // Refresh halaman untuk kembali ke login
+            }
+
+            // 5. Cek jika user sudah login sebelumnya
+            checkSession() {
+                const session = localStorage.getItem('session');
+                if (session) {
+                    this.showUserPage(session);
+                }
+            }
+        }
+
+        // Inisialisasi Object App
+        const authApp = new AuthApp();
+    </script>
+</body>
+</html>
