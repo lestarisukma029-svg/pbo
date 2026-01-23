@@ -3,51 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Masuk Sistem - OOP</title>
+    <title>Sistem Akses Modern</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
     <style>
-        body { background-color: #e9ecef; height: 100vh; display: flex; align-items: center; }
-        .card { border: none; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-        .hidden { display: none; }
-        .btn-masuk { background-color: #2c3e50; color: white; border: none; }
-        .btn-masuk:hover { background-color: #1a252f; color: white; }
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            margin: 0;
+        }
+
+        .card { 
+            border: none; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+            backdrop-filter: blur(10px);
+            background: var(--glass-bg);
+            transition: transform 0.3s ease;
+        }
+
+        .hidden { display: none !important; }
+
+        .btn-masuk { 
+            background: #764ba2; 
+            color: white; 
+            border: none; 
+            border-radius: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+        }
+
+        .btn-masuk:hover { 
+            background: #5a3782; 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            color: white;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25 margin-top rgba(118, 75, 162, 0.25);
+            border-color: #764ba2;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Responsif Sederhana */
+        @media (max-width: 576px) {
+            .container { padding: 20px; }
+            h3 { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
             
-            <div id="panel-masuk" class="card p-4">
+            <div id="panel-masuk" class="card p-4 animate__animated animate__fadeInDown">
                 <div class="card-body">
-                    <h3 class="text-center mb-4 fw-bold">Masuk Sistem</h3>
+                    <div class="text-center mb-4">
+                        <div class="mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#764ba2" class="bi bi-shield-lock" viewBox="0 0 16 16">
+                                <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.998 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM8 0c.685 0 1.856.233 3.006.53 1.15.298 2.3.64 2.89.835a1.487 1.487 0 0 1 .984 1.18c.594 4.445-.835 7.85-2.55 10.096a11.71 11.71 0 0 1-2.503 2.434c-.403.285-.758.482-1.042.614a2.713 2.713 0 0 1-.504.19c-.114.03-.213.046-.287.046a.84.84 0 0 1-.287-.046 2.712 2.712 0 0 1-.504-.19c-.284-.132-.639-.329-1.042-.614a11.71 11.71 0 0 1-2.503-2.434C1.165 9.555-.264 6.15.33 1.705a1.487 1.487 0 0 1 .984-1.181C2.464.333 3.615.09 4.994 0 8 0 8 0 8 0z"/>
+                                <path d="M9.5 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                <path d="M8 7.411a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="fw-bold text-dark">Selamat Datang</h3>
+                        <p class="text-muted small">Silakan masuk ke akun Anda</p>
+                    </div>
+
                     <div id="notifikasi"></div>
                     
                     <form id="form-otentikasi">
                         <div class="mb-3">
-                            <label class="form-label">Nama Pengguna</label>
+                            <label class="form-label small fw-semibold">Nama Pengguna</label>
                             <input type="text" id="inp-user" class="form-control" placeholder="admin" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Kata Sandi</label>
-                            <input type="password" id="inp-pass" class="form-control" placeholder="123" required>
+                        <div class="mb-4">
+                            <label class="form-label small fw-semibold">Kata Sandi</label>
+                            <input type="password" id="inp-pass" class="form-control" placeholder="••••••••" required>
                         </div>
-                        <button type="submit" class="btn btn-masuk w-100 py-2">Masuk Sekarang</button>
+                        <button type="submit" class="btn btn-masuk w-100 py-2 shadow-sm">Masuk Sekarang</button>
                     </form>
                 </div>
             </div>
 
-            <div id="halaman-user" class="card p-4 hidden">
+            <div id="halaman-user" class="card p-4 hidden animate__animated animate__zoomIn">
                 <div class="card-body text-center">
-                    <div class="mb-3">
-                        <img src="" id="foto-profil" class="rounded-circle border border-3 border-primary" width="90">
+                    <div class="mb-3 mt-2">
+                        <img src="" id="foto-profil" class="rounded-circle profile-img">
                     </div>
-                    <p class="text-muted mb-1">Selamat Datang Kembali,</p>
-                    <h2 id="nama-lengkap" class="fw-bold text-dark">User</h2>
-                    <div class="badge bg-success mb-4">Sesi Aktif</div>
-                    <hr>
-                    <button id="btn-keluar" class="btn btn-danger w-100">Keluar Sistem</button>
+                    <p class="text-muted mb-1">Halo, Selamat Datang!</p>
+                    <h2 id="nama-lengkap" class="fw-bold text-dark mb-3">User</h2>
+                    <div class="badge bg-light text-success border border-success px-3 py-2 mb-4">
+                        <span class="spinner-grow spinner-grow-sm me-1" role="status"></span>
+                        Sesi Aktif
+                    </div>
+                    <hr class="my-4">
+                    <button id="btn-keluar" class="btn btn-outline-danger w-100 rounded-pill">
+                        Keluar dari Sistem
+                    </button>
                 </div>
             </div>
 
@@ -56,19 +136,13 @@
 </div>
 
 <script>
-/**
- * Class ManajemenAkses
- * Mengelola data pengguna di LocalStorage dan proses verifikasi.
- */
 class ManajemenAkses {
     constructor() {
         this.storageKey = 'database_pengguna';
         this.sessionKey = 'sesi_aktif';
         
-        // Inisialisasi Database JSON ke LocalStorage
         this.siapkanData();
         
-        // Element Selector
         this.elPanelMasuk = document.getElementById('panel-masuk');
         this.elHalamanUser = document.getElementById('halaman-user');
         this.elForm = document.getElementById('form-otentikasi');
@@ -79,7 +153,7 @@ class ManajemenAkses {
     siapkanData() {
         if (!localStorage.getItem(this.storageKey)) {
             const dataAwal = [
-                { "username": "admin", "sandi": "123", "nama": "Administrator Utama" },
+                { "username": "admin", "sandi": "123", "nama": "Administrator" },
                 { "username": "budi", "sandi": "budi123", "nama": "Budi Hermawan" }
             ];
             localStorage.setItem(this.storageKey, JSON.stringify(dataAwal));
@@ -87,22 +161,23 @@ class ManajemenAkses {
     }
 
     jalankan() {
-        // Cek apakah sudah masuk sebelumnya
         const sesi = localStorage.getItem(this.sessionKey);
         if (sesi) {
             this.tampilkanHalamanUser(JSON.parse(sesi));
         }
 
-        // Event saat tombol masuk ditekan
         this.elForm.addEventListener('submit', (e) => {
             e.preventDefault();
             this.verifikasi();
         });
 
-        // Event keluar
         document.getElementById('btn-keluar').addEventListener('click', () => {
-            localStorage.removeItem(this.sessionKey);
-            location.reload();
+            // Animasi keluar sebelum reload
+            this.elHalamanUser.classList.add('animate__fadeOutUp');
+            setTimeout(() => {
+                localStorage.removeItem(this.sessionKey);
+                location.reload();
+            }, 500);
         });
     }
 
@@ -111,14 +186,20 @@ class ManajemenAkses {
         const p = document.getElementById('inp-pass').value;
         const db = JSON.parse(localStorage.getItem(this.storageKey));
 
-        // Proses pencarian data di JSON
         const cocok = db.find(item => item.username === u && item.sandi === p);
 
         if (cocok) {
-            localStorage.setItem(this.sessionKey, JSON.stringify(cocok));
-            this.tampilkanHalamanUser(cocok);
+            // Beri feedback visual sukses sejenak
+            this.tampilkanPesan("Berhasil! Mengalihkan...", "success");
+            setTimeout(() => {
+                localStorage.setItem(this.sessionKey, JSON.stringify(cocok));
+                this.tampilkanHalamanUser(cocok);
+            }, 800);
         } else {
-            this.tampilkanPesan("salah login", "danger");
+            this.tampilkanPesan("Username atau sandi salah!", "danger");
+            // Efek shake jika salah
+            this.elPanelMasuk.classList.add('animate__shakeX');
+            setTimeout(() => this.elPanelMasuk.classList.remove('animate__shakeX'), 500);
         }
     }
 
@@ -126,17 +207,23 @@ class ManajemenAkses {
         this.elPanelMasuk.classList.add('hidden');
         this.elHalamanUser.classList.remove('hidden');
         document.getElementById('nama-lengkap').innerText = data.nama;
-        document.getElementById('foto-profil').src = `https://ui-avatars.com/api/?name=${data.nama}&background=random`;
+        // Gunakan inisial nama untuk avatar yang lebih personal
+        document.getElementById('foto-profil').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(data.nama)}&background=764ba2&color=fff&size=128`;
     }
 
     tampilkanPesan(pesan, tipe) {
         const box = document.getElementById('notifikasi');
-        box.innerHTML = `<div class="alert alert-${tipe} text-center p-2" style="font-size:0.9rem">${pesan}</div>`;
+        box.innerHTML = `
+            <div class="alert alert-${tipe} animate__animated animate__headShake p-2 mb-3 shadow-sm" style="font-size:0.85rem">
+                ${pesan}
+            </div>`;
     }
 }
 
-// Inisialisasi Aplikasi
-const akses = new ManajemenAkses();
+// Jalankan aplikasi
+document.addEventListener('DOMContentLoaded', () => {
+    new ManajemenAkses();
+});
 </script>
 
 </body>
